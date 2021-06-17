@@ -42189,3 +42189,2560 @@ PASSED!
 
 
 ----QUIT----(15 June 2021 14:59:20) CuisUniversity-4532.image priorSource: 19406873!
+
+----STARTUP---- (15 June 2021 16:49:02) as C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\CuisUniversity-4532.image!
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 16:51:21'!
+numbered: aNumber owner: anOwner expireOn: aDate 
+	
+	^ self new initializeExpiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 16:59:21' prior: 50938137!
+numbered: aNumber owner: anOwner expireOn: aDate 
+	
+	(aNumber numberOfDigitsInBase: 10) = 16 ifFalse: [self error: self invalidNumberOfDigitsOfCreditCardErrorDescription].
+	anOwner withBlanksTrimmed isEmpty ifTrue: [self error: self invalidOwnerOfCreditCardErrorDescription].
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 16:59:57'!
+invalidNumberOfDigitsOfCreditCardErrorDescription
+
+	^ 'Invalid number of digits of credit card'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:00:20'!
+invalidOwnerOfCreditCardErrorDescription
+
+	^ 'Invalid owner of credit card'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:01:08'!
+assertNumberOfDigits: aNumber
+
+	^ (aNumber numberOfDigitsInBase: 10) = 16 ifFalse: [self error: self invalidNumberOfDigitsOfCreditCardErrorDescription]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:01:08' prior: 50938144!
+numbered: aNumber owner: anOwner expireOn: aDate 
+	
+	self assertNumberOfDigits: aNumber.
+	anOwner withBlanksTrimmed isEmpty ifTrue: [self error: self invalidOwnerOfCreditCardErrorDescription].
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:01:37' prior: 50938178!
+numbered: aNumber owner: anOwner expireOn: aDate 
+	
+	(aNumber numberOfDigitsInBase: 10) = 16 ifFalse: [self error: self invalidNumberOfDigitsOfCreditCardErrorDescription].
+	anOwner withBlanksTrimmed isEmpty ifTrue: [self error: self invalidOwnerOfCreditCardErrorDescription].
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:02:16' prior: 50938164!
+invalidOwnerOfCreditCardErrorDescription
+
+	^ 'Invalid owner of credit card'! !
+
+----STARTUP---- (15 June 2021 17:03:30) as C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\CuisUniversity-4532.image!
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:04:20'!
+numbered: aNumber owner: anOwnder expireOn: aDate 
+	
+	^ self new initializeExpiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:04:39' prior: 50938215!
+numbered: aNumber owner: anOwner expireOn: aDate 
+	
+	^ self new initializeWithNumber: aNumber ownder: anOwner ExpiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:05:11' prior: 50938222!
+numbered: aNumber owner: anOwner expireOn: aDate 
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner ExpiringOn: aDate! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:06:01'!
+assertNumberOfDigits: aNumber
+
+	(aNumber numberOfDigitsInBase: 10) = 16 ifFalse: [self error: self invalidNumberOfDigitsOfCreditCardErrorDescription]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:06:25'!
+invalidNumberOfDigitsOfCreditCardErrorDescription
+
+	^ 'Invalid number of digits of credit card'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:07:38'!
+invalidOwnerOfCreditCardErrorDescription
+
+	^ 'Invalid owner of creditc ard'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:08:18'!
+assertOwner: anOwner
+
+	anOwner withBlanksTrimmed isEmpty ifTrue: [self error: self invalidOwnerOfCreditCardErrorDescription ]! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:08:34' prior: 50938230!
+numbered: aNumber owner: anOwner expireOn: aDate 
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'Ciro 6/15/2021 17:08:57'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'date expiredDate number'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'Ciro 6/15/2021 17:08:57'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'date expiredDate number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 17:08:55'!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:10:09' prior: 50937863!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ CreditCard new.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:10:11'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:10:11'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:10:11'!
+PASSED!
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:10:11'!
+PASSED!
+
+!testRun: #CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:10:11'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:10:25' prior: 50937844!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ CreditCard expireOn: (Date yesterday).
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:10:26'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:10:26'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:10:26'!
+PASSED!
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:10:26'!
+PASSED!
+
+!testRun: #CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:10:26'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:10:40' prior: 50937808!
+test03CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ CreditCard expireOn: (Date tomorrow).
+	cashier _ Cashier checkout: cart chargingOn: creditCard registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:10:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:10:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:10:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:10:41'!
+PASSED!
+
+!testRun: #CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:10:41'!
+PASSED!
+!StoreTestSimulator methodsFor: 'items' stamp: 'Ciro 6/15/2021 17:13:06'!
+createCreditCardWithNumber: aNumber owner: anOwner expireDate: aDate
+	
+	^ CreditCard numbered: aNumber owner: anOwner expireOn: aDate! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:14:03' prior: 50938298!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime today.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:14:36' prior: 50938331!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime yesterday .
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:14:45' prior: 50938424!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime yesterday.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:15:09' prior: 50938367!
+test03CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime tomorrow.
+	cashier _ Cashier checkout: cart chargingOn: creditCard registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:15:17' prior: 50938040!
+test04ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime tomorrow.
+	cashier _ Cashier checkout: cart chargingOn: creditCard registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+!methodRemoval: CreditCard #initializeExpiringOn: stamp: 'Ciro 6/15/2021 17:15:25'!
+initializeExpiringOn: aDate 
+	
+	expiredDate _ aDate!
+
+!methodRemoval: CreditCard class #expireOn: stamp: 'Ciro 6/15/2021 17:15:30'!
+expireOn: aDate 
+	
+	^ self new initializeExpiringOn: aDate!
+!CreditCard methodsFor: 'expired' stamp: 'Ciro 6/15/2021 17:15:51'!
+isExpiredOn: aDate
+
+	^ expiredDate < aDate! !
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:16:25'!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertValidCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'Ciro 6/15/2021 17:16:42'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard salesCollection total date'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 17:16:41'!
+initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollection
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	date _ aDate.
+	salesCollection _ aSalesCollection! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:17:07' prior: 50938405!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime today.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: DateAndTime today registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:17:16' prior: 50938543!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime today.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:17:20' prior: 50938445!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime yesterday.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:17:23' prior: 50938466!
+test03CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime tomorrow.
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:17:26' prior: 50938484!
+test04ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime tomorrow.
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+!methodRemoval: Cashier class #checkout:chargingOn:registerOn: stamp: 'Ciro 6/15/2021 17:17:33'!
+checkout: aCart chargingOn: aCreditCard registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertValidCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard registerOn: aSalesCollecion!
+
+!methodRemoval: Cashier #initializeToCheckout:chargingOn:registerOn: stamp: 'Ciro 6/15/2021 17:17:38'!
+initializeToCheckout: aCart chargingOn: aCreditCard registerOn: aSalesCollection
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	salesCollection _ aSalesCollection!
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:17:51' prior: 50938515!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertValidCreditCard: aCreditCard on: aDate.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:18:00'!
+assertValidCreditCard: aCreditCard on: aDate
+
+	aCreditCard isExpired ifTrue: [self error: self canNotCheckoutWithAnInvalidCreditCardErrorDescription]! !
+
+!methodRemoval: Cashier class #assertValidCreditCard: stamp: 'Ciro 6/15/2021 17:18:03'!
+assertValidCreditCard: aCreditCard
+
+	aCreditCard isExpired ifTrue: [self error: self canNotCheckoutWithAnInvalidCreditCardErrorDescription]!
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:18:15' prior: 50938674!
+assertValidCreditCard: aCreditCard on: aDate
+
+	aCreditCard isExpiredOn: aDate ifTrue: [self error: self canNotCheckoutWithAnInvalidCreditCardErrorDescription]! !
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:18:29' prior: 50938689!
+assertValidCreditCard: aCreditCard on: aDate
+
+	(aCreditCard isExpiredOn: aDate) ifTrue: [self error: self canNotCheckoutWithAnInvalidCreditCardErrorDescription]! !
+
+!methodRemoval: CreditCard #isExpired stamp: 'Ciro 6/15/2021 17:18:52'!
+isExpired
+
+	^ expiredDate < DateAndTime now date!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:19:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:19:04'!
+PASSED!
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:19:04'!
+PASSED!
+
+!testRun: #CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:19:04'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:24:47' prior: 50938563!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: DateAndTime today.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CreditCard methodsFor: 'expired' stamp: 'Ciro 6/15/2021 17:24:52' prior: 50938511!
+isExpiredOn: aDate
+
+	^ expiredDate < (Month month: aDate monthIndex year: aDate yearNumber) start! !
+!CreditCard methodsFor: 'expired' stamp: 'Ciro 6/15/2021 17:25:40' prior: 50938742!
+isExpiredOn: aDate
+
+	^ expiredDate start < (Month month: aDate monthIndex year: aDate yearNumber) start! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:26:32' prior: 50938583!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1).
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:26:46' prior: 50938605!
+test03CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:26:49' prior: 50938624!
+test04ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:26:54' prior: 50938722!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:27:00'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:27:00'!
+PASSED!
+
+!testRun: #CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:27:00'!
+PASSED!
+
+!testRun: #CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:27:00'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:27:33'!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1).
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+
+!methodRemoval: CashierTest #test02CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 17:27:43'!
+test02CanNotCheckoutWithAnInvalidCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1).
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:27:44'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:28:03'!
+test06CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:28:06'!
+test07ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+!methodRemoval: CashierTest #test04ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:28:10'!
+test04ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.!
+
+!methodRemoval: CashierTest #test03CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:28:13'!
+test03CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1).
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:30:23'!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator createCreditCardWithNumber: 1111111111111111 owner: 'Ciro' expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1).
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: (storeTestSimulator 
+				createCreditCardWithNumber: 1111111111111111 
+				owner: 'Ciro' 
+				expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)) 
+				on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:31:46' prior: 50938989!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: (storeTestSimulator 
+				createCreditCardWithNumber: 1111111111111111 
+				owner: 'Ciro' 
+				expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)) 
+				on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:31:50' prior: 50939020!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: (storeTestSimulator 
+				createCreditCardWithNumber: 1111111111111111 
+				owner: 'Ciro' 
+				expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)) 
+				on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:32:31'!
+validCreditCard
+	
+	^ CreditCard numbered: 1111111111111111 owner: 'Ciro' expireOn: 1! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:32:57' prior: 50939069!
+validCreditCard
+	
+	^ CreditCard numbered: 1111111111111111 owner: 'Ciro' expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:33:07' prior: 50938906!
+test06CalculateCheckoutIsCorrect
+
+	| cart creditCard cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:33:11' prior: 50938926!
+test07ValidCheckoutRegistersASale
+
+	| cart creditCard cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:33:15' prior: 50938820!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator validCreditCard.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier checkout: cart chargingOn: creditCard on: (DateAndTime today) registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:33:49' prior: 50939116!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	creditCard _ storeTestSimulator validCreditCard.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: storeTestSimulator createCart 
+			chargingOn: storeTestSimulator validCreditCard 
+			on: DateAndTime today 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:33:57' prior: 50939134!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| sales |
+	
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: storeTestSimulator createCart 
+			chargingOn: storeTestSimulator validCreditCard 
+			on: DateAndTime today 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:34:29' prior: 50939083!
+test06CalculateCheckoutIsCorrect
+
+	| cart cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard
+		on: DateAndTime today 
+		registerOn: sales.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:34:55' prior: 50939099!
+test07ValidCheckoutRegistersASale
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:35:51' prior: 50938855!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart creditCard sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator 
+		createCreditCardWithNumber: 1111111111111111 
+		owner: 'Ciro' 
+		expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1).
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: creditCard 
+			on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:36:09'!
+expiredCreditCard
+	
+	^ CreditCard numbered: 1111111111111111 owner: 'Ciro' expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:36:42' prior: 50939201!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator expiredCreditCard
+			on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:36:43'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:37:05' prior: 50939045!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: (storeTestSimulator 
+				createCreditCardWithNumber: 1111111111111111 
+				owner: 'Ciro' 
+				expireDate: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)) 
+				on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:37:43'!
+creditCardWithInvalidNumberOfDigits
+	
+	^ CreditCard 
+		numbered: 1 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:37:49' prior: 50939226!
+expiredCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:37:57' prior: 50939075!
+validCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:38:35'!
+creditCardWithInvalidOwner
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: '' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:38:56' prior: 50939274!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidNumberOfDigits 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:39:16' prior: 50939334!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidNumberOfDigits 
+			on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:39:36' prior: 50939353!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidNumberOfDigits 
+			on: (DateAndTime today) 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CreditCard invalidNumberOfDigitsOfCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:39:37'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:39:42' prior: 50939373!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidNumberOfDigits 
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CreditCard invalidNumberOfDigitsOfCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:39:47' prior: 50939234!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator expiredCreditCard
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnInvalidCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:40:11'!
+test04CanNotCheckoutWithACreditCardWithInvalidOwner
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidOwner
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CreditCard invalidOwnerOfCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:40:12'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:41:19'!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator stolenCreditCard
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier invalidOwnerOfCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:41:43' prior: 50939496!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator stolenCreditCard
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnStolenCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:42:11'!
+assertNotExpiredCreditCard: aCreditCard on: aDate
+
+	(aCreditCard isExpiredOn: aDate) ifTrue: [self error: self canNotCheckoutWithAnExpiredCreditCardErrorDescription]! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 17:42:25'!
+canNotCheckoutWithAnExpiredCreditCardErrorDescription
+	
+	^ 'Can not checkout with an expired credit card'! !
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:42:35' prior: 50938663!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+
+!methodRemoval: Cashier class #assertValidCreditCard:on: stamp: 'Ciro 6/15/2021 17:42:40'!
+assertValidCreditCard: aCreditCard on: aDate
+
+	(aCreditCard isExpiredOn: aDate) ifTrue: [self error: self canNotCheckoutWithAnInvalidCreditCardErrorDescription]!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 17:43:00' prior: 50939434!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator expiredCreditCard
+			on: DateAndTime today
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnExpiredCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+
+!methodRemoval: Cashier class #canNotCheckoutWithAnInvalidCreditCardErrorDescription stamp: 'Ciro 6/15/2021 17:43:09'!
+canNotCheckoutWithAnInvalidCreditCardErrorDescription
+	
+	^ 'Can not checkout with an invalid credit card'!
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:43:30' prior: 50939549!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:43:56'!
+assertNotStolenCreditCard: aCreditCard
+
+	(aCreditCard isStolen) ifTrue: [self error: self canNotCheckoutWithAnStolenCreditCardErrorDescription]! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 17:44:09'!
+canNotCheckoutWithAnStolenCreditCardErrorDescription
+	
+	^ 'Can not checkout with an stolen credit card'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 17:47:33'!
+numbered: aNumber owner: anOwner expireOn: aDate stolen: aBoolean
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate stolen: aBoolean! !
+!CreditCard methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 17:47:44'!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate stolen: aBoolean
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate! !
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'Ciro 6/15/2021 17:47:52'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'date expiredDate number owner stolen'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CreditCard methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 17:47:51' prior: 50939633!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate stolen: aBoolean
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate.
+	stolen _ aBoolean.! !
+!CreditCard methodsFor: 'stolen' stamp: 'Ciro 6/15/2021 17:48:23'!
+isStolen
+
+	^ stolen! !
+
+!methodRemoval: StoreTestSimulator #createCreditCardWithNumber:owner:expireDate: stamp: 'Ciro 6/15/2021 17:48:35'!
+createCreditCardWithNumber: aNumber owner: anOwner expireDate: aDate
+	
+	^ CreditCard numbered: aNumber owner: anOwner expireOn: aDate!
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:48:57' prior: 50939298!
+creditCardWithInvalidNumberOfDigits
+	
+	^ CreditCard 
+		numbered: 1 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)
+		stolen: false! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:49:01' prior: 50939325!
+creditCardWithInvalidOwner
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: '' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)
+		stolen: false! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:49:03' prior: 50939307!
+expiredCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)
+		stolen: false! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:49:06' prior: 50939316!
+validCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)
+		stolen: false! !
+
+!methodRemoval: CreditCard class #numbered:owner:expireOn: stamp: 'Ciro 6/15/2021 17:49:17'!
+numbered: aNumber owner: anOwner expireOn: aDate 
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate!
+
+!methodRemoval: CreditCard #initializeWithNumber:owner:expiringOn: stamp: 'Ciro 6/15/2021 17:49:23'!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 17:49:26'!
+FAILURE!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:49:26'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 17:49:26'!
+FAILURE!
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 17:49:48'!
+stolenCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)
+		stolen: true! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 17:50:02'!
+PASSED!
+!Cashier class methodsFor: 'assertion' stamp: 'Ciro 6/15/2021 17:51:42' prior: 50939609!
+assertNotStolenCreditCard: aCreditCard
+
+	(aCreditCard isStolen) ifTrue: [self error: self canNotCheckoutWithAnStolenCreditCardErrorDescription]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:01:38' prior: 50939185!
+test07ValidCheckoutRegistersASale
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard salesCollection total date merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cashier category: 'TusLibros' stamp: 'Ciro 6/15/2021 18:01:59'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart creditCard salesCollection total date merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:02:58'!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcesor: aMerchantProcesort
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:03:10' prior: 50939823!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcesor: aMerchantProcessor
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:03:35' prior: 50939154!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| sales |
+	
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: storeTestSimulator createCart 
+			chargingOn: storeTestSimulator validCreditCard 
+			on: DateAndTime today 
+			registerOn: sales ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:03:54'!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcessor: aMerchantProcessor
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion! !
+
+!methodRemoval: Cashier class #checkout:chargingOn:on:registerOn:withMerchantProcesor: stamp: 'Ciro 6/15/2021 18:03:57'!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcesor: aMerchantProcessor
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:12' prior: 50939852!
+test01CanNotCheckoutWithAnEmptyCart
+
+	| sales |
+	
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: storeTestSimulator createCart 
+			chargingOn: storeTestSimulator validCreditCard 
+			on: DateAndTime today 
+			registerOn: sales
+			withMerchantProcessor: self ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnEmptyCartErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:16' prior: 50939569!
+test02CanNotCheckoutWithAnExpiredCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator expiredCreditCard
+			on: DateAndTime today
+			registerOn: sales
+			withMerchantProcessor: self ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnExpiredCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:20' prior: 50939414!
+test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidNumberOfDigits 
+			on: DateAndTime today
+			registerOn: sales
+			withMerchantProcessor: self ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CreditCard invalidNumberOfDigitsOfCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:23' prior: 50939453!
+test04CanNotCheckoutWithACreditCardWithInvalidOwner
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator creditCardWithInvalidOwner
+			on: DateAndTime today
+			registerOn: sales
+			withMerchantProcessor: self ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = CreditCard invalidOwnerOfCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:27' prior: 50939515!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator stolenCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnStolenCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:30' prior: 50939170!
+test06CalculateCheckoutIsCorrect
+
+	| cart cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	
+	self assert: cashier checkOut equals: 30.
+	self deny: sales isEmpty! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:04:34' prior: 50939793!
+test07ValidCheckoutRegistersASale
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:04:38'!
+PASSED!
+
+!methodRemoval: Cashier class #checkout:chargingOn:on:registerOn: stamp: 'Ciro 6/15/2021 18:04:45'!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion!
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:05:09' prior: 50939868!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcessor: aMerchantProcessor
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	self assertNotStolenCreditCard: aCreditCard.
+
+	^ self new 
+		initializeToCheckout: aCart 
+		chargingOn: aCreditCard 
+		on: aDate 
+		registerOn: aSalesCollecion 
+		withMerchantProcessor: aMerchantProcessor ! !
+!Cashier methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 18:05:17'!
+initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollection withMerchantProcessor: aMerchantProcessor 
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	date _ aDate.
+	salesCollection _ aSalesCollection! !
+
+!methodRemoval: Cashier #initializeToCheckout:chargingOn:on:registerOn: stamp: 'Ciro 6/15/2021 18:05:20'!
+initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollection
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	date _ aDate.
+	salesCollection _ aSalesCollection!
+!Cashier methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 18:05:29' prior: 50940083!
+initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollection withMerchantProcessor: aMerchantProcessor 
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	date _ aDate.
+	salesCollection _ aSalesCollection.
+	merchantProcessor _ aMerchantProcessor! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:05:32'!
+PASSED!
+!Cashier methodsFor: 'check out' stamp: 'Ciro 6/15/2021 18:07:26' prior: 50938004!
+checkOut
+
+	self calculateTotal.
+	self debitFromCreditCard.
+	self registerSale.
+	
+	^ total.! !
+!Cashier methodsFor: 'check out' stamp: 'Ciro 6/15/2021 18:07:32'!
+debitFromCreditCard
+
+	! !
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 18:07:58' prior: 50940145!
+debitFromCreditCard
+
+	merchantProcessor debit: total from: creditCard! !
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 18:08:27'!
+debit: aNumber from: aCreditCard! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'storeTestSimulator isAStolenCreditCard creditCardCanDebitTheAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'Ciro 6/15/2021 18:26:06'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'storeTestSimulator isAStolenCreditCard creditCardCanDebitTheAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'set up' stamp: 'Ciro 6/15/2021 18:26:50' prior: 50937626 overrides: 16927572!
+setUp
+
+	storeTestSimulator _ StoreTestSimulator new.
+	isAStolenCreditCard _ false.
+	! !
+!CashierTest methodsFor: 'set up' stamp: 'Ciro 6/15/2021 18:27:06' prior: 50940174 overrides: 16927572!
+setUp
+
+	storeTestSimulator _ StoreTestSimulator new.
+	isAStolenCreditCard _ false.
+	creditCardCanDebitTheAmount _ true! !
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 18:28:14' prior: 50940154!
+debit: aNumber from: aCreditCard
+
+	isAStolenCreditCard ifTrue: [self error: Cashier ].
+	
+	creditCardCanDebitTheAmount ifFalse: []! !
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 18:28:47' prior: 50940187!
+debit: aNumber from: aCreditCard
+
+	isAStolenCreditCard ifTrue: [self error: Cashier canNotDebitFromAStolenCreditCardErrorDescription].
+	
+	creditCardCanDebitTheAmount ifFalse: []! !
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 18:29:30' prior: 50940194!
+debit: aNumber from: aCreditCard
+
+	isAStolenCreditCard ifTrue: [self error: Cashier canNotDebitFromAStolenCreditCardErrorDescription].
+	
+	creditCardCanDebitTheAmount ifFalse: [self error: Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription]! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 18:29:58'!
+canNotDebitFromAStolenCreditCardErrorDescription
+	
+	^ 'Can not debit from a stolen credit card'! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 18:30:25'!
+canNotDebitFromACreditCardWithNoBalanceErrorDescription
+	
+	^ 'Can not debit from a credit card with no balance'! !
+!CreditCard class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:30:38'!
+numbered: aNumber owner: anOwner expireOn: aDate
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate! !
+!CreditCard methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 18:30:48'!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate! !
+
+!methodRemoval: CreditCard #isStolen stamp: 'Ciro 6/15/2021 18:30:59'!
+isStolen
+
+	^ stolen!
+
+!methodRemoval: StoreTestSimulator #stolenCreditCard stamp: 'Ciro 6/15/2021 18:31:22'!
+stolenCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)
+		stolen: true!
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 18:31:25' prior: 50939699!
+validCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 18:31:28' prior: 50939689!
+expiredCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber - 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 18:31:30' prior: 50939679!
+creditCardWithInvalidOwner
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: '' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 18:31:34' prior: 50939669!
+creditCardWithInvalidNumberOfDigits
+	
+	^ CreditCard 
+		numbered: 1 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!Cashier class methodsFor: 'instance creation' stamp: 'Ciro 6/15/2021 18:31:47' prior: 50940067!
+checkout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollecion withMerchantProcessor: aMerchantProcessor
+
+	self assertCartNotEmpty: aCart.
+	
+	self assertNotExpiredCreditCard: aCreditCard on: aDate.
+
+	^ self new 
+		initializeToCheckout: aCart 
+		chargingOn: aCreditCard 
+		on: aDate 
+		registerOn: aSalesCollecion 
+		withMerchantProcessor: aMerchantProcessor ! !
+
+!methodRemoval: Cashier class #assertNotStolenCreditCard: stamp: 'Ciro 6/15/2021 18:31:54'!
+assertNotStolenCreditCard: aCreditCard
+
+	(aCreditCard isStolen) ifTrue: [self error: self canNotCheckoutWithAnStolenCreditCardErrorDescription]!
+
+!methodRemoval: Cashier class #canNotCheckoutWithAnStolenCreditCardErrorDescription stamp: 'Ciro 6/15/2021 18:32:00'!
+canNotCheckoutWithAnStolenCreditCardErrorDescription
+	
+	^ 'Can not checkout with an stolen credit card'!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:32:22' prior: 50939976!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotCheckoutWithAnStolenCreditCardErrorDescription.
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:32:32' prior: 50940320!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	
+	self should: [ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAStolenCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:32:34'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:33:16' prior: 50940340!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cashier cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAStolenCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:33:17'!
+FAILURE!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:33:40' prior: 50940363!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cashier cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	isAStolenCreditCard _ true.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAStolenCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:33:41'!
+PASSED!
+
+!methodRemoval: CreditCard class #numbered:owner:expireOn:stolen: stamp: 'Ciro 6/15/2021 18:33:49'!
+numbered: aNumber owner: anOwner expireOn: aDate stolen: aBoolean
+
+	self assertNumberOfDigits: aNumber.
+	self assertOwner: anOwner.
+	
+	^ self new initializeWithNumber: aNumber owner: anOwner expiringOn: aDate stolen: aBoolean!
+
+!methodRemoval: CreditCard #initializeWithNumber:owner:expiringOn:stolen: stamp: 'Ciro 6/15/2021 18:33:54'!
+initializeWithNumber: aNumber owner: anOwner expiringOn: aDate stolen: aBoolean
+	
+	number _ aNumber.
+	owner _ anOwner.
+	expiredDate _ aDate.
+	stolen _ aBoolean.!
+
+Object subclass: #CreditCard
+	instanceVariableNames: 'date expiredDate number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CreditCard category: 'TusLibros' stamp: 'Ciro 6/15/2021 18:34:23'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'date expiredDate number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:34:25'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:35:04'!
+test08CanNotCheckoutWithACreditCardWithNoBalance
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:35:23' prior: 50940491!
+test08CanNotCheckoutWithACreditCardWithNoBalance
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	creditCardCanDebitTheAmount _ false.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:35:43' prior: 50940509!
+test08CanNotCheckoutWithACreditCardWithNoBalance
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	creditCardCanDebitTheAmount _ false.
+	total _ cashier checkOut.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:35:54' prior: 50940528!
+test08CanNotCheckoutWithACreditCardWithNoBalance
+
+	| cart cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	creditCardCanDebitTheAmount _ false.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 18:35:55'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:36:42'!
+test09ValidCheckoutCorrectlyDebitFromCreditCard
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:37:46'!
+test09ValidCheckoutDebitFromCreditCard
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+
+!methodRemoval: CashierTest #test09ValidCheckoutCorrectlyDebitFromCreditCard stamp: 'Ciro 6/15/2021 18:37:49'!
+test09ValidCheckoutCorrectlyDebitFromCreditCard
+
+	| cart cashier sales total |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: storeTestSimulator validCreditCard 
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'Ciro 6/15/2021 18:40:05'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'storeTestSimulator isAStolenCreditCard creditCardCanDebitTheAmount debitedAmount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'Ciro 6/15/2021 18:40:06'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'storeTestSimulator isAStolenCreditCard creditCardCanDebitTheAmount debitedAmount debitedCreditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 18:40:04' prior: 50940203!
+debit: aNumber from: aCreditCard
+
+	isAStolenCreditCard ifTrue: [self error: Cashier canNotDebitFromAStolenCreditCardErrorDescription].
+	
+	creditCardCanDebitTheAmount ifFalse: [self error: Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription].
+	
+	debitedAmount _ aNumber.
+	
+	debitedCreditCard _ aCreditCard! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:40:46' prior: 50940623!
+test09ValidCheckoutDebitFromCreditCard
+
+	| cart cashier sales total creditCard |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: creditCard
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = sales first.! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 18:41:14' prior: 50940690!
+test09ValidCheckoutDebitFromCreditCard
+
+	| cart cashier sales total creditCard |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: creditCard
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = debitedAmount.
+	self assert: creditCard = debitedCreditCard ! !
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 18:41:15'!
+PASSED!
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 18:52:05' prior: 50938009!
+calculateTotal
+
+	total _ cart total! !
+!StoreTestSimulator methodsFor: 'items' stamp: 'Ciro 6/15/2021 18:53:38'!
+itemSellByTheStorePrice
+
+	^ 10! !
+!StoreTestSimulator methodsFor: 'as yet unclassified' stamp: 'Ciro 6/15/2021 18:53:38' prior: 50937360!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		yourself ! !
+
+!methodRemoval: StoreTestSimulator #itemNotSellByTheStorePrice stamp: 'Ciro 6/15/2021 18:53:38'!
+itemNotSellByTheStorePrice
+
+	^ 10!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 18:53:39'!
+PASSED!
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 18:56:36' prior: 50940762!
+calculateTotal
+
+	| sumaParcial |
+	
+	cart xxx: self.
+	
+	total _ cart total! !
+!Cart methodsFor: 'total' stamp: 'Ciro 6/15/2021 18:57:47'!
+xxx: aCashier
+
+	items do: [ :anItem | aCashier zzz: (catalog at: anItem)]! !
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 18:58:14'!
+zzz: aPrice
+
+	total _ total + aPrice! !
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 18:58:23' prior: 50940813!
+calculateTotal
+	
+	cart xxx: self! !
+!Cashier methodsFor: 'initialization' stamp: 'Ciro 6/15/2021 18:58:37' prior: 50940103!
+initializeToCheckout: aCart chargingOn: aCreditCard on: aDate registerOn: aSalesCollection withMerchantProcessor: aMerchantProcessor 
+
+	cart _ aCart.
+	creditCard _ aCreditCard.
+	date _ aDate.
+	salesCollection _ aSalesCollection.
+	merchantProcessor _ aMerchantProcessor.
+	total _ 0! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 18:58:43'!
+PASSED!
+
+!methodRemoval: Cart #total stamp: 'Ciro 6/15/2021 18:58:50'!
+total
+
+	^ items sum: [ :anItem | catalog at: anItem ]!
+!Cart methodsFor: 'total' stamp: 'Ciro 6/15/2021 19:00:35'!
+priceFromItemsFor: aCashier
+
+	items do: [ :anItem | aCashier zzz: (catalog at: anItem)]! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'Ciro 6/15/2021 19:00:35' prior: 50940827!
+calculateTotal
+	
+	cart priceFromItemsFor: self! !
+
+!methodRemoval: Cart #xxx: stamp: 'Ciro 6/15/2021 19:00:35'!
+xxx: aCashier
+
+	items do: [ :anItem | aCashier zzz: (catalog at: anItem)]!
+!Cashier methodsFor: 'private' stamp: 'Ciro 6/15/2021 19:01:02'!
+addToTotal: aPrice
+
+	total _ total + aPrice! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'Ciro 6/15/2021 19:01:02' prior: 50940877!
+priceFromItemsFor: aCashier
+
+	items do: [ :anItem | aCashier addToTotal: (catalog at: anItem)]! !
+
+!methodRemoval: Cashier #zzz: stamp: 'Ciro 6/15/2021 19:01:02'!
+zzz: aPrice
+
+	total _ total + aPrice!
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 19:01:29'!
+PASSED!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 19:02:34'!
+test09ValidCheckoutDebitFromCreditCardCorrectly
+
+	| cart cashier sales total creditCard |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: creditCard
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = debitedAmount.
+	self assert: creditCard = debitedCreditCard ! !
+
+!methodRemoval: CashierTest #test09ValidCheckoutDebitFromCreditCard stamp: 'Ciro 6/15/2021 19:02:34'!
+test09ValidCheckoutDebitFromCreditCard
+
+	| cart cashier sales total creditCard |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	creditCard _ storeTestSimulator validCreditCard.
+	cashier _ Cashier 
+		checkout: cart 
+		chargingOn: creditCard
+		on: DateAndTime today 
+		registerOn: sales
+		withMerchantProcessor: self.
+	total _ cashier checkOut.
+	
+	self deny: sales isEmpty.
+	self assert: total = debitedAmount.
+	self assert: creditCard = debitedCreditCard !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'Ciro 6/15/2021 19:08:50'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'storeTestSimulator isAStolenCreditCard creditCardCanDebitTheAmount debitedAmount debitedCreditCard isAnInvalidCreditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 19:08:46'!
+test10CanNotCheckoutWithAnInvalidCreditCard
+
+	| cashier cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator validCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	isAnInvalidCreditCard _ true.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAnInvalidCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'debit' stamp: 'Ciro 6/15/2021 19:09:30' prior: 50940677!
+debit: aNumber from: aCreditCard
+
+	isAStolenCreditCard ifTrue: [self error: Cashier canNotDebitFromAStolenCreditCardErrorDescription].
+	
+	creditCardCanDebitTheAmount ifFalse: [self error: Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription].
+	
+	isAnInvalidCreditCard ifTrue: [self error: Cashier canNotDebitFromAnInvalidCreditCardErrorDescription].
+	
+	debitedAmount _ aNumber.
+	
+	debitedCreditCard _ aCreditCard! !
+!CashierTest methodsFor: 'set up' stamp: 'Ciro 6/15/2021 19:09:45' prior: 50940180 overrides: 16927572!
+setUp
+
+	storeTestSimulator _ StoreTestSimulator new.
+	isAStolenCreditCard _ false.
+	creditCardCanDebitTheAmount _ true.
+	isAnInvalidCreditCard _ false.! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 19:10:07'!
+canNotDebitFromAnInvalidCreditCardErrorDescription
+	
+	^ 'Can not an invalid from a stolen credit card'! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 19:10:11' prior: 50940214!
+canNotDebitFromAStolenCreditCardErrorDescription
+	
+	^ 'Can not a debit from a stolen credit card'! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 19:10:21' prior: 50941040!
+canNotDebitFromAStolenCreditCardErrorDescription
+	
+	^ 'Can not debit from a stolen credit card'! !
+!Cashier class methodsFor: 'error description' stamp: 'Ciro 6/15/2021 19:10:32' prior: 50941033!
+canNotDebitFromAnInvalidCreditCardErrorDescription
+	
+	^ 'Can not debit from an invalid credit card'! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCardCorrectly stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+
+!testRun: #CashierTest #test10CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 19:10:34'!
+PASSED!
+!StoreTestSimulator methodsFor: 'credit card' stamp: 'Ciro 6/15/2021 19:11:11'!
+invalidCreditCard
+	
+	^ CreditCard 
+		numbered: 1111111111111111 
+		owner: 'Ciro' 
+		expireOn: (Month month: (DateAndTime now) monthIndex year: (DateAndTime now) yearNumber + 1)! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 19:11:18' prior: 50940387!
+test05CanNotCheckoutWithAStolenCreditCard
+
+	| cashier cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator invalidCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	isAStolenCreditCard _ true.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAStolenCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 19:11:24' prior: 50940986!
+test10CanNotCheckoutWithAnInvalidCreditCard
+
+	| cashier cart sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator invalidCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	isAnInvalidCreditCard _ true.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromAnInvalidCreditCardErrorDescription .
+			self assert: sales isEmpty]! !
+!CashierTest methodsFor: 'tests' stamp: 'Ciro 6/15/2021 19:11:30' prior: 50940552!
+test08CanNotCheckoutWithACreditCardWithNoBalance
+
+	| cart cashier sales |
+	
+	cart _ storeTestSimulator createCart.
+	cart add: 3 of: storeTestSimulator itemSellByTheStore.
+	sales _ OrderedCollection new.
+	cashier _ Cashier 
+			checkout: cart 
+			chargingOn: storeTestSimulator invalidCreditCard
+			on: DateAndTime today
+			registerOn: sales 
+			withMerchantProcessor: self.
+	creditCardCanDebitTheAmount _ false.
+	
+	self should: [ cashier checkOut ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotDebitFromACreditCardWithNoBalanceErrorDescription .
+			self assert: sales isEmpty]! !
+
+!testRun: #CashierTest #test01CanNotCheckoutWithAnEmptyCart stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test02CanNotCheckoutWithAnExpiredCreditCard stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithACreditCardWithInvalidNumberOfDigits stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test04CanNotCheckoutWithACreditCardWithInvalidOwner stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test05CanNotCheckoutWithAStolenCreditCard stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test06CalculateCheckoutIsCorrect stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test07ValidCheckoutRegistersASale stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test08CanNotCheckoutWithACreditCardWithNoBalance stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test09ValidCheckoutDebitFromCreditCardCorrectly stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+!testRun: #CashierTest #test10CanNotCheckoutWithAnInvalidCreditCard stamp: 'Ciro 6/15/2021 19:11:39'!
+PASSED!
+
+----QUIT----(15 June 2021 19:13:05) CuisUniversity-4532.image priorSource: 19407329!
+
+----STARTUP---- (17 June 2021 13:10:32) as C:\Users\cirob\Documents\Facultad\2021\1erCuatri\Inge1\Cuis\windows64\CuisUniversity-4532.image!
+
+
+!classRenamed: #CashierTest as: #CheckOutTest stamp: 'Ciro 6/17/2021 13:14:21'!
+Smalltalk renameClassNamed: #CashierTest as: #CheckOutTest!
+
+----QUIT----(17 June 2021 13:14:34) CuisUniversity-4532.image priorSource: 19505745!
